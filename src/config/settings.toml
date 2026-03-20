@@ -3,87 +3,98 @@
 theme = 'brookmint'
 
 [general]
-title = "Meditation Apps"
+title = "Clawboration"
 logo = ""
-iconLogo = "tabler:coffee"
+iconLogo = "tabler:stack-3"
 
 [general.seo]
-name = "Cafe Directory"
-description = "Find the best nuxt starter kits."
-url = "https://nuxtstarters.com"
+name = "Clawboration"
+description = "Buyer guides, alternatives, use cases, playbooks, and templates for AI workflow teams."
+url = "https://clawboration.co"
 
 [directoryData.source]
-name = "json"    # default, mock, sheets, json
-links = "normal"
+name = "markdown"
+linksOutbound = false
 
 [directoryData.tagPages]
-title = "{0} Apps"
+title = "{0}"
 
 [directoryData.search]
-placeholder = "Search among {0} listings of this directory :)"
+placeholder = "Search across {0} buyer guides, workflows, and templates"
 
 [[directoryData.tags]]
-key = "breathing"
-name = "Breathing"
+key = "agent-platform"
+name = "Agent Platform"
 color = "blue"
-emoji = "👃"
-description = "Breathing techniques are a popular feature in meditation apps."
+emoji = "AP"
+description = "Comparisons and templates for agent platforms and orchestration tools."
 
 [[directoryData.tags]]
-key = "sleep"
-name = "Sleep"
+key = "workflows"
+name = "Workflows"
 color = "green"
-emoji = "💤"
-description = "Some apps include music that slowly goes away to help you sleep better and rest."
+emoji = "WF"
+description = "Pages focused on orchestrating multi-step AI workflows and automation."
 
 [[directoryData.tags]]
-key = "meditation"
-name = "Meditation"
+key = "customer-support"
+name = "Customer Support"
+color = "orange"
+emoji = "CS"
+description = "Use cases and templates for support copilots, ticket triage, and knowledge bots."
+
+[[directoryData.tags]]
+key = "sales-ops"
+name = "Sales Ops"
+color = "red"
+emoji = "SO"
+description = "Lead routing, qualification, and handoff workflows for revenue teams."
+
+[[directoryData.tags]]
+key = "knowledge-base"
+name = "Knowledge Base"
 color = "purple"
-emoji = "🧘‍♂️"
-description = "A meditation for your life. It's a great way to relax and clear your mind. It's also a great way to improve your sleep."
-
-[[directoryData.tags]]
-key = "yoga"
-name = "Yoga"
-color = "purple"
-emoji = "🧘‍♂️"
-description = "A yoga for your life."
-
-[[directoryData.tags]]
-key = "timer"
-name = "Timer"
-color = "green"
-emoji = "⏰"
-description = "Timers can be used to track how much you meditate."
+emoji = "KB"
+description = "Guides and assets for internal search, RAG, and knowledge management."
 
 [header.banner]
-show = true
-text = "Follow mark_bruderer on twitter."
-link = "https://x.com/intent/follow?screen_name=mark_bruderer"
-brandText = "AI Agent Libraries"
+show = false
+text = "Clawboration"
+link = "https://clawboration.co"
+brandText = "Editorial infrastructure for AI workflow GTM"
 
 [header.navbar]
 colorModeSelector = true
 
 [[header.navbar.links]]
-name = "Blog"
-href = "/blog"
+name = "Compare"
+href = "/compare"
 
 [[header.navbar.links]]
-name = "Analytics"
-href = "https://us.posthog.com/shared/vHlGCcSqPjGH4r_QijaXSETtmN9J-g"
-target = "_blank"
+name = "Alternatives"
+href = "/alternatives"
+
+[[header.navbar.links]]
+name = "Best"
+href = "/best"
+
+[[header.navbar.links]]
+name = "Use Cases"
+href = "/use-cases"
+
+[[header.navbar.links]]
+name = "Playbooks"
+href = "/playbooks"
+
+[[header.navbar.links]]
+name = "Templates"
+href = "/templates"
 
 [header.actionButton]
-text = "Submit an app"
-href = "https://tally.so"
+text = "Browse Templates"
+href = "https://clawboration.co/templates"
 
 [footer]
-description = "Best directory for my niche."
+description = "Research-backed buyer journeys for AI workflow software."
 
-[footer.socials.x]
-link = "https://x.com/mark_bruderer"
-
-[footer.socials.youtube]
-link = "https://www.youtube.com/@mark_hacks"
+[footer.socials]

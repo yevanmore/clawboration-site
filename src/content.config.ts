@@ -9,21 +9,12 @@ const pages = defineCollection({
   schema: ({ image }) => z.object({
     image: image().optional(),
     title: z.string().optional(),
+    description: z.string().optional(),
     tags: z.array(z.string()).optional(),
-  }),
-});
-
-const blog = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/data/blog" }),
-  schema: ({image}) => z.object({
-    title: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    image: image().optional(),
   }),
 });
 
 export const collections = {
   directory,
   pages,
-  blog,
 };

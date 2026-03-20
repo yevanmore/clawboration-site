@@ -1,9 +1,12 @@
 import type { AllContent } from "../types/content";
 import { getCollection } from "astro:content";
 
-export async function getBlogPages() {
-  const allPosts = await getCollection("blog");
-  return allPosts.map((entry) => ({params: {slug: entry.id }, props: { entry }}));
+function getEntrySlug(entry: AllContent) {
+  if (entry.collection === "directory") {
+    return `${entry.data.section}/${entry.id}`;
+  }
+
+  return entry.id;
 }
 
 export async function getRootPages(remapIndex: boolean = true) {
@@ -15,7 +18,7 @@ export async function getRootPages(remapIndex: boolean = true) {
 
   // Return paths based on slugs
   return combinedEntries.map((entry) => {
-    let mySlug: string = entry.id;
+    let mySlug: string = getEntrySlug(entry);
 
     if (mySlug === "index" && remapIndex) {
       mySlug = "/";

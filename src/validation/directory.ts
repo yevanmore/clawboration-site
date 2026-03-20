@@ -4,6 +4,14 @@ export const directorySchema = (imageSchema: z.ZodTypeAny) =>
   z.object({
     title: z.string().optional(),
     description: z.string().optional(),
+    section: z.enum([
+      "compare",
+      "alternatives",
+      "best",
+      "use-cases",
+      "playbooks",
+      "templates",
+    ]),
     tags: z.array(z.string()).optional(),
     icon: z.string().optional(),
     image: imageSchema.optional(),

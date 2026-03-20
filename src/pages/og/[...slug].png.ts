@@ -10,7 +10,11 @@ const boldFontPath = 'node_modules/@fontsource/gabarito/files/gabarito-latin-700
 const regularFontPath = 'node_modules/@fontsource/gabarito/files/gabarito-latin-400-normal.woff' as const;
  
 interface Props {
-  params: { slug: string };
+  params: { slug: string | string[] };
+}
+
+function normalizeSlug(slug: string | string[]) {
+  return Array.isArray(slug) ? slug.join("/") : slug;
 }
 
 function getPostCoverPath(entry: AllContent) {
@@ -30,19 +34,23 @@ function getPostCoverImage(entry: AllContent) {
  
 export async function GET({ params }: Props) {
   const title = config.general.title;
-  console.log(params);
-  const { slug } = params;
+  const slug = normalizeSlug(params.slug);
+  const directoryId = slug.split("/").pop() || slug;
 
   let entry: AllContent | undefined;
-  const allListings = (await getCollection("directory")).map(e => e.id);
-  if (allListings.includes(slug)){
-    entry = await getEntry('directory', slug);
+  const allPages = (await getCollection("pages")).map((entry) => entry.id);
+  const allListings = (await getCollection("directory")).map((entry) => entry.id);
+
+  if (allPages.includes(slug)) {
+    entry = await getEntry("pages", slug);
+  } else if (allListings.includes(directoryId)) {
+    entry = await getEntry("directory", directoryId);
   } else {
-    entry = await getEntry('pages', slug);
+    throw new Error("Unable to find " + slug);
   }
 
   if (!entry) {
-    throw new Error("Unable to find " + slug);
+    throw new Error("Unable to resolve entry " + slug);
   }
 
   // using custom font files
@@ -106,7 +114,7 @@ export async function GET({ params }: Props) {
                     fontSize: '18px',
                     fontFamily: 'Gabarito Regular',
                   },
-                  children: entry.collection === 'directory' ? entry.data.description : entry.data.title,
+                  children: entry.data.description ?? entry.data.title,
                 },
               },
             ],

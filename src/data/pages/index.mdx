@@ -1,11 +1,22 @@
-import Grid from '@/components/directory/Grid.astro'
-import SimpleLeftHero from '@/components/hero/SimpleLeftHero.astro'
+---
+title: Clawboration
+description: Editorial infrastructure for comparisons, alternatives, use cases, playbooks, and templates around AI workflow software.
+---
+
 import Search from '@/components/directory/Search.astro'
+import SectionGrid from '@/components/directory/SectionGrid.astro'
+import SectionOverview from '@/components/marketing/SectionOverview.astro'
 
-# Minted Directory
+# Clawboration
 
-Welcome to this fully customizable directory.
+Research-backed pages for teams evaluating AI workflow software and building category-level search demand around that buying journey.
 
 <Search />
 
-<Grid />
+<SectionOverview />
+
+## Featured drafts
+
+These entries are the initial structure for the site. Treat the copy as working draft content until you sign off on the editorial direction.
+
+<SectionGrid featuredOnly={true} limit={6} />

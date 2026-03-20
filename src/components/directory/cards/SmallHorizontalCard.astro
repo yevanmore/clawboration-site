@@ -3,6 +3,15 @@ import { Image } from "astro:assets";
 import DirectoryFeaturedTag from "../FeaturedTag.astro";
 const { myItem, href } = Astro.props;
 const type = "small-horizontal";
+const sectionLabel = myItem.section
+  ? myItem.section.replace(/-/g, " ")
+  : "entry";
+const sectionInitials = sectionLabel
+  .split(" ")
+  .map((word: string) => word[0])
+  .join("")
+  .slice(0, 2)
+  .toUpperCase();
 ---
 
 <a
@@ -20,16 +29,23 @@ const type = "small-horizontal";
           loading="lazy"
         />
       ) : (
-        <div class="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-lg" />
+        <div class="flex items-center justify-center w-16 h-16 rounded-lg bg-primary-50 text-primary-700 dark:bg-primary-950 dark:text-primary-200 text-xs font-semibold tracking-[0.2em]">
+          {sectionInitials}
+        </div>
       )
     }
   </div>
 
   <div class="flex-grow">
     <div class="flex items-center justify-between mb-0.5">
-      <h3 class="font-bold line-clamp-1 text-ellipsis overflow-hidden card-title">
-        {myItem.title}
-      </h3>
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.18em] text-primary-700 dark:text-primary-300">
+          {sectionLabel}
+        </p>
+        <h3 class="font-bold line-clamp-1 text-ellipsis overflow-hidden card-title">
+          {myItem.title}
+        </h3>
+      </div>
     </div>
 
     <p class="text-sm md:text-xs text-gray-600 dark:text-gray-400 line-clamp-2 card-description">

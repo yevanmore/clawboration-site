@@ -2,13 +2,20 @@
 import { Icon } from "astro-icon/components";
 import Image from "astro/components/Image.astro";
 
-const { title, link, linkText, description, image } = Astro.props;
+const { title, link, linkText, description, image, section } = Astro.props;
 ---
 
 <div class="mb-10">
   <div class="flex justify-between items-end">
     <div>
       {image && <Image class="h-15 w-15 mb-8" src={image} alt={title} />}
+      {
+        section && (
+          <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-700 dark:text-primary-300">
+            {section.replace("-", " ")}
+          </p>
+        )
+      }
       <h1 class="font-bold text-4xl text-gray-900 dark:text-gray-50">
         {title}
       </h1>

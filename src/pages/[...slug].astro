@@ -17,12 +17,16 @@ export async function getStaticPaths() {
   return await getRootPages();
 }
 
-const landingView = !slug || slug === "blog";
+const landingView = !slug;
 ---
 
 {
   landingView ? (
-    <Landing>
+    <Landing
+      title={entry.data.title}
+      description={entry.data.description}
+      slug={slug}
+    >
       <Content />
     </Landing>
   ) : (

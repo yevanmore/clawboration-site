@@ -1,12 +1,12 @@
 [layout]
-sidebar = true
-emoji = true
+sidebar = false
+emoji = false
 
 [listings]
 pageHeader = 'title'
 
 [directoryUI.search]
-placeholder = "Search among {0} agent frameworks"
+placeholder = "Search across {0} guides"
 showCount = true
 icon = "tabler:search"
 
@@ -19,25 +19,25 @@ list = false
 type = "small-card-grid"
 
 [directoryUI.grid.emptyState]
-text = "Seems that this entry is missing from the archives."
+text = "Nothing matched this filter yet."
 type = "button"                                              # options: button, simple, link
 icon = "tabler:exclamation-mark"
 
 [directoryUI.grid.card]
-image = true
+image = false
 
 [directoryUI.grid.submit]
-show = true
+show = false
 first = false
-title = "Submit a template"
-description = "Submit a template to show off a good project to other people."
+title = "Suggest a page"
+description = "Share a page idea once the editorial pipeline is ready."
 hideable = true
 
 [directoryUI.featured]
 showOnAllPages = true
 showOnSide = true
 icon = "tabler:star"
-labelForCard = "Featured ✨"
+labelForCard = "Featured"
 
 [ui.icons]
 dark = "tabler:moon"

@@ -1,0 +1,26 @@
+---
+import { getListings } from "../../lib/getListings";
+import PureGrid from "./PureGrid.astro";
+
+const { section, featuredOnly = false, limit } = Astro.props;
+
+let listings = await getListings();
+
+if (section) {
+  listings = listings.filter((entry) => entry.data.section === section);
+}
+
+if (featuredOnly) {
+  listings = listings.filter((entry) => entry.data.featured);
+}
+
+listings = listings.sort(
+  (a, b) => Number(b.data.featured) - Number(a.data.featured),
+);
+
+if (typeof limit === "number") {
+  listings = listings.slice(0, limit);
+}
+---
+
+<PureGrid listings={listings} />

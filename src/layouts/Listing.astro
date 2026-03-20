@@ -24,14 +24,15 @@ const sidebar = config.layout.sidebar;
       <SidebarShell showSidebar={false}>
         <div class="max-w-2xl w-full mx-auto py-20">
           {pageHeader == "title" && (
-            <TitleHeader
-              title={title}
-              description={description}
-              link={link}
-              linkText={linkText}
-              image={frontmatter.image}
-            />
-          )}
+              <TitleHeader
+                title={title}
+                description={description}
+                link={link}
+                linkText={linkText}
+                image={frontmatter.image}
+                section={frontmatter.section}
+              />
+            )}
           <AppProse>
             <slot />
           </AppProse>
@@ -42,6 +43,13 @@ const sidebar = config.layout.sidebar;
         <div class="max-w-2xl w-full mx-auto py-20">
           {pageHeader == "title" && (
             <div class="mb-10">
+              {
+                frontmatter.section && (
+                  <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-700 dark:text-primary-300">
+                    {frontmatter.section.replace("-", " ")}
+                  </p>
+                )
+              }
               <div class="flex justify-between items-center">
                 <h1 class="font-bold text-4xl text-gray-900 dark:text-gray-50">
                   {title}

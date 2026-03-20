@@ -6,45 +6,44 @@ import Posthog from "@components/analytics/Posthog.astro";
 import { ClientRouter } from "astro:transitions";
 import { getOGImage } from "@util/getOGImage";
 
-const { title, slug } = Astro.props;
+const { title, slug, description } = Astro.props;
 const siteTitle = themeConfig.general.title;
-
 const calculatedTitle = title || siteTitle;
+const calculatedDescription = description || themeConfig.general.seo.description;
+const normalizedSlug =
+  !slug || slug === "/" ? "index" : String(slug).replace(/^\/+/, "");
+const pagePath = normalizedSlug === "index" ? "/" : `/${normalizedSlug}`;
+const canonicalUrl = new URL(pagePath, themeConfig.general.seo.url).toString();
+const twitterDomain = new URL(themeConfig.general.seo.url).hostname;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="generator" content={Astro.generator} />
 
     <title>{calculatedTitle}</title>
-    <meta name="description" content={themeConfig.general.seo.description} />
+    <meta name="description" content={calculatedDescription} />
 
     <!-- Facebook Meta Tags -->
-    <meta property="og:url" content={themeConfig.general.seo.url} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={calculatedTitle} />
-    <meta
-      property="og:description"
-      content={themeConfig.general.seo.description}
-    />
-    <meta property="og:image" content={getOGImage(slug)} />
+    <meta property="og:description" content={calculatedDescription} />
+    <meta property="og:image" content={getOGImage(normalizedSlug)} />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="codeagents.dev" />
-    <meta property="twitter:url" content={themeConfig.general.seo.url} />
-    <meta name="twitter:title" content={themeConfig.general.seo.name} />
-    <meta
-      name="twitter:description"
-      content={themeConfig.general.seo.description}
-    />
-    <meta name="twitter:image" content={getOGImage(slug)} />
+    <meta property="twitter:domain" content={twitterDomain} />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={calculatedTitle} />
+    <meta name="twitter:description" content={calculatedDescription} />
+    <meta name="twitter:image" content={getOGImage(normalizedSlug)} />
     <ClientRouter />
   </head>
   <body class="bg-white dark:bg-gray-900">
